@@ -1,0 +1,42 @@
+
+
+
+MATCH (emp:Employee) 
+WHERE emp.name = 'Abc' OR emp.name = 'Xyz'
+RETURN emp
+
+match( michael:USER { name: 'Michael' } )-[:HAS_SEEN]-(movie) return movie.name
+
+match(tagger:Tag { name: '16766' })-[:TAGGED]-(movie) return movie.title
+
+
+
+GET ALL MOVIES TAGGED BY userID 16766
+MATCH(tagger:Tag { userid: '16766' })-[:TAGGED]-(movie) return movie.title
+
+
+MATCH p=()-[r:TAGGED]->() RETURN p LIMIT 25
+
+
+
+
+
+GET ALL MOVIES WITH NAME 'Movie100'  or movie.name ='Movie654'
+MATCH (movie:Movie)
+WHERE movie.name =  'Movie100'  or movie.name ='Movie654'
+RETURN movie
+
+get movie and tags by specific movie and user id
+
+MATCH p=(tagger:Tag)-[r:TAGGED]->(movie:Movie) WHERE movie.title starts with '2001' and tagger.userid='146' 
+RETURN p LIMIT 1000
+
+
+MATCH p=(tagger:Tag)-[r:TAGGED]->(movie:Movie) WHERE movie.title starts with 'Star' RETURN p LIMIT 1000
+
+
+MATCH p=(movie:Movie)-[r:IS_CLASSIFIED_AS]->(genre:Genre) Where genre.name='Drama' RETURN p LIMIT 1000
+
+MATCH p=(tagger:Tag)-[r:TAGGED]->(movie:Movie) WHERE movie.title starts with '2001' 
+and tagger.userid='146'
+RETURN p LIMIT 1000
